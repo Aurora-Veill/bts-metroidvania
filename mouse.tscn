@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://nswplh0rr4bh"]
+
+[ext_resource type="Texture2D" uid="uid://ddf7c3of35c0q" path="res://icon.svg" id="1_07p8a"]
+[ext_resource type="Script" path="res://mouse.gd" id="1_s63ag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lg3k2"]
+size = Vector2(24, 24)
+
+[node name="mouse" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_s63ag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lg3k2")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.188, 0.188)
+texture = ExtResource("1_07p8a")
+
+[node name="MouseGone" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="MouseGone" to="." method="_on_mouse_gone_timeout"]

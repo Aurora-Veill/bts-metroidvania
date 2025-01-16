@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://r3t1w1ftq35d"]
+
+[ext_resource type="Script" path="res://room_change_trigger.gd" id="1_fp72f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm044"]
+size = Vector2(1, 672)
+
+[node name="HRoomChangeTrigger" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_fp72f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pm044")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]

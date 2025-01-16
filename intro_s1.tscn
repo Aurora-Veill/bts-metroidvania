@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=4 uid="uid://d2eusqdw5mmjm"]
+
+[ext_resource type="TileSet" uid="uid://dycagorhkxvkm" path="res://the tileset.tres" id="1_gywtf"]
+[ext_resource type="Script" path="res://Room.gd" id="1_hkluv"]
+
+[node name="Intro_s1" type="Node2D"]
+script = ExtResource("1_hkluv")
+gridLoc = Vector2(2, 1)
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAABAAAAAAAEAAAAAAACAAAAAAAAAAIAAAACAAEAAAAGAAAAAAACAAIAAAAGAAAAAAACAAMAAAAGAAAAAAACAAQAAAAGAAAAAAACAAUAAAAGAAAAAAADAAYAAAAEAAAAAAAEAAYAAAAEAAAAAAAFAAYAAAAEAAAAAAAGAAYAAAAEAAAAAAAHAAUAAAACAAAAAAAHAAQAAAACAAAAAAAHAAMAAAACAAAAAAAHAAIAAAACAAAAAAAHAAEAAAACAAAAAAAHAAAAAAACAAAAAAA=")
+tile_set = ExtResource("1_gywtf")

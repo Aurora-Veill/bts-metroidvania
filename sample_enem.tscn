@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwgy6orrwbm8a"]
+
+[ext_resource type="Script" path="res://sample_enem.gd" id="1_3em5n"]
+[ext_resource type="Texture2D" uid="uid://dbdmg85r68e26" path="res://rat.png" id="2_gohv1"]
+[ext_resource type="Script" path="res://state_machine.gd" id="3_0qku0"]
+[ext_resource type="Script" path="res://enemidle.gd" id="4_5ae5n"]
+[ext_resource type="Script" path="res://attack.gd" id="5_iw0gt"]
+[ext_resource type="Script" path="res://escape.gd" id="6_unh4g"]
+[ext_resource type="Script" path="res://found_ya.gd" id="7_iutd0"]
+[ext_resource type="Script" path="res://run_away.gd" id="8_xk8qe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5b5xu"]
+size = Vector2(32, 12)
+
+[node name="Sample enem" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_3em5n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_5b5xu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gohv1")
+
+[node name="detectWall" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+collision_mask = 8
+hit_from_inside = true
+
+[node name="detectPlayer" type="RayCast2D" parent="."]
+target_position = Vector2(500, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="detectPlayerBehind" type="RayCast2D" parent="."]
+target_position = Vector2(-500, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_0qku0")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_5ae5n")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_iw0gt")
+
+[node name="Escape" type="Node" parent="StateMachine"]
+script = ExtResource("6_unh4g")
+
+[node name="FoundYa" type="Node" parent="StateMachine"]
+script = ExtResource("7_iutd0")
+
+[node name="RunAway" type="Node" parent="StateMachine"]
+script = ExtResource("8_xk8qe")
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="IdleTimer" to="StateMachine" method="_on_idle_timer_timeout"]

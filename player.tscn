@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player.gd" id="1_eay3i"]
 [ext_resource type="Texture2D" uid="uid://ddf7c3of35c0q" path="res://icon.svg" id="2_8y5lm"]
-[ext_resource type="Script" path="res://state_machine.gd" id="3_lgp5n"]
+[ext_resource type="Script" path="res://player_state_machine.gd" id="3_lgp5n"]
 [ext_resource type="Script" path="res://idle.gd" id="4_o4isw"]
 [ext_resource type="Script" path="res://walking.gd" id="5_a80p7"]
 [ext_resource type="Script" path="res://jumping.gd" id="6_e66x3"]
@@ -11,6 +11,8 @@
 size = Vector2(112, 112)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_eay3i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

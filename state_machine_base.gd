@@ -5,8 +5,9 @@ var states = {}
 var curState = ""
 func _ready() -> void:
 	for i in get_children():
-		states.get_or_add(i.name, i)
-		i.stateMachine = self
+		if i is state:
+			states.get_or_add(i.name, i)
+			i.stateMachine = self
 	curState = states[get_child(0).name].name
 
 func move(delta : float):

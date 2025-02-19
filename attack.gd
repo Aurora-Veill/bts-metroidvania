@@ -2,10 +2,9 @@ extends state
 
 func physics(delta : float):
 	if owner.detectWall.is_colliding():
-		owner.facingRight = !owner.facingRight
-		owner.apply_scale(Vector2(-1, 1))
+		owner.turnAround()
 		owner.velocity.y = -100
-		stateMachine.changeState("Idle")
+		stateMachine.changeState("Bonk")
 	if not owner.is_on_floor():
 		owner.velocity += owner.get_gravity() * delta
 	if owner.facingRight:
@@ -15,21 +14,19 @@ func physics(delta : float):
 	
 	if owner.detectPlayer.is_colliding() and (owner.detectPlayer.get_collider().has_method("Player") or owner.detectPlayer.get_collider().has_method("Mouse")):
 		if owner.detectPlayer.get_collider().has_method("Player"):
-			owner.idleTimer.stop()
+			stateMachine.idleTimer.stop()
 			stateMachine.changeState("RunAway")
 		elif owner.detectPlayer.get_collider().has_method("Mouse"):
-			owner.idleTimer.stop()
+			stateMachine.idleTimer.stop()
 	elif owner.detectPlayerBehind.is_colliding() and (owner.detectPlayerBehind.get_collider().has_method("Player") or owner.detectPlayerBehind.get_collider().has_method("Mouse")):
 		if owner.detectPlayerBehind.get_collider().has_method("Player"):
-			owner.facingRight = !owner.facingRight
-			owner.apply_scale(Vector2(-1, 1))
-			owner.idleTimer.stop()
+			owner.turnAround()
+			stateMachine.idleTimer.stop()
 			stateMachine.changeState("RunAway")
 		elif owner.detectPlayerBehind.get_collider().has_method("Mouse"):
-			owner.facingRight = !owner.facingRight
-			owner.apply_scale(Vector2(-1, 1))
-			owner.idleTimer.stop()
+			owner.turnAround()
+			stateMachine.idleTimer.stop()
 	else:
-		if owner.idleTimer.is_stopped():
-			owner.idleTimer.start(1)
+		if stateMachine.idleTimer.is_stopped():
+			stateMachine.idleTimer.start(1)
 	owner.move_and_slide()

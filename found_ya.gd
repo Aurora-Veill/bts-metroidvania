@@ -1,8 +1,7 @@
 extends state
 
 func enterState():
-	owner.sprite.texture = preload("res://ratxclamation.png")
-	owner.sprite.position.y = -8
+	owner.sprite.frame = 1
 	if owner.is_on_floor():
 		owner.velocity.y = -100
 
@@ -14,6 +13,5 @@ func physics(delta : float):
 		stateMachine.changeState("Attack")
 
 func exitState():
-	owner.sprite.texture = preload("res://rat.png")
-	owner.sprite.position.y = 0
+	owner.sprite.frame = 0
 	

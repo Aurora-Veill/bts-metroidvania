@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwgy6orrwbm8a"]
+[gd_scene load_steps=11 format=3 uid="uid://dwgy6orrwbm8a"]
 
 [ext_resource type="Script" path="res://sample_enem.gd" id="1_3em5n"]
 [ext_resource type="Texture2D" uid="uid://dbdmg85r68e26" path="res://rat.png" id="2_gohv1"]
@@ -8,21 +8,25 @@
 [ext_resource type="Script" path="res://escape.gd" id="6_unh4g"]
 [ext_resource type="Script" path="res://found_ya.gd" id="7_iutd0"]
 [ext_resource type="Script" path="res://run_away.gd" id="8_xk8qe"]
+[ext_resource type="Script" path="res://bonk.gd" id="9_jadmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5b5xu"]
-size = Vector2(32, 12)
+size = Vector2(32, 13)
 
 [node name="Sample enem" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_3em5n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_5b5xu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("2_gohv1")
+hframes = 2
+vframes = 3
 
 [node name="detectWall" type="RayCast2D" parent="."]
 target_position = Vector2(20, 0)
@@ -30,12 +34,12 @@ collision_mask = 8
 hit_from_inside = true
 
 [node name="detectPlayer" type="RayCast2D" parent="."]
-target_position = Vector2(500, 0)
+target_position = Vector2(400, 0)
 collision_mask = 4
 hit_from_inside = true
 
 [node name="detectPlayerBehind" type="RayCast2D" parent="."]
-target_position = Vector2(-500, 0)
+target_position = Vector2(-300, 0)
 collision_mask = 4
 hit_from_inside = true
 
@@ -57,7 +61,10 @@ script = ExtResource("7_iutd0")
 [node name="RunAway" type="Node" parent="StateMachine"]
 script = ExtResource("8_xk8qe")
 
-[node name="IdleTimer" type="Timer" parent="."]
+[node name="Bonk" type="Node" parent="StateMachine"]
+script = ExtResource("9_jadmn")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine"]
 one_shot = true
 
-[connection signal="timeout" from="IdleTimer" to="StateMachine" method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="StateMachine/IdleTimer" to="StateMachine" method="_on_idle_timer_timeout"]

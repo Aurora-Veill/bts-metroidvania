@@ -20,7 +20,7 @@ func physics(delta : float):
 		stateMachine.idleTimer.start(0.5)
 	subframe = (subframe + 1) % 3
 	if subframe == 0:
-		frame = (frame + 1) % 4
+		frame = (frame + 1) % 5
 
 	
 func exitState():

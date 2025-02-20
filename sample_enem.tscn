@@ -25,7 +25,7 @@ shape = SubResource("RectangleShape2D_5b5xu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2_gohv1")
-hframes = 2
+hframes = 3
 vframes = 3
 
 [node name="detectWall" type="RayCast2D" parent="."]

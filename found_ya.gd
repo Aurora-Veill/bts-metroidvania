@@ -2,8 +2,7 @@ extends state
 
 func enterState():
 	owner.sprite.frame = 1
-	if owner.is_on_floor():
-		owner.velocity.y = -100
+	owner.velocity.y = -100
 
 func physics(delta : float):
 	owner.move_and_slide()

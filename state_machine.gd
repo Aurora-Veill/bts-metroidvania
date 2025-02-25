@@ -6,3 +6,6 @@ extends state_machine
 
 func _on_idle_timer_timeout() -> void:
 	changeState("Idle")
+
+func startTimer(time : float):
+	idleTimer.start(time)

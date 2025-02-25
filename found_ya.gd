@@ -5,6 +5,7 @@ func enterState():
 	owner.velocity.y = -100
 
 func physics(delta : float):
+	
 	owner.move_and_slide()
 	if not owner.is_on_floor():
 		owner.velocity += owner.get_gravity() * delta

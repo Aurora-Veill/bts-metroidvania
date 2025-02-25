@@ -2,6 +2,7 @@ extends state
 
 
 func physics(delta : float) :
+	print("idle")
 	if owner.detectWall.is_colliding():
 		owner.facingRight = !owner.facingRight
 		owner.apply_scale(Vector2(-1, 1))

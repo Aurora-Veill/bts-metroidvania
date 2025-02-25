@@ -1,6 +1,7 @@
 extends state
 
 func physics(delta : float):
+	print("escape")
 	if owner.detectWall.is_colliding():
 		owner.turnAround()
 		owner.velocity.y = -100
